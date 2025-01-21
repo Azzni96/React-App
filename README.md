@@ -1,50 +1,71 @@
-# React + TypeScript + Vite
+## Getting started - Setting up a React project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Development tools
+    - The basic set:
+      - Git + GitHub
+      - Node.js + npm
+      - VS Code + extensions, add 'ES7+ React/Redux/React-Native snippets'
+      - Browser + dev tools (+ [React Developer Tools](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi))
+    - [Vite](https://vitejs.dev/) for project scaffolding and automated development tasks
+1. Create a new project with Vite
+    - `npm create vite@latest my-app`
+      - Choose 'React' -> 'TypeScript + SWC'
+    - `cd my-app`
+    - `npm install`
+    - `npm run dev`
+    - Open <http://localhost:port> in your browser (remember to check the port from the console output and open dev tools)
+    - Open the project folder in code editor
 
-## Expanding the ESLint configuration
+1. Create new file '.editorconfig' and add this content:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+   ```conf
+   root = true
 
-- Configure the top-level `parserOptions` property like this:
+   [*]
+   indent_style = space
+   indent_size = 2
+   end_of_line = lf
+   charset = utf-8
+   trim_trailing_whitespace = true
+   insert_final_newline = true
+   ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Install prettier: `npm install --save-dev --save-exact prettier` and `npm install --save-dev eslint-config-prettier`
+1. If using VSCode, Create new file `.prettierrc` and add this content:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   ```json
+   {
+       "semi": true,
+       "singleQuote": true,
+       "tabWidth": 2,
+       "useTabs": false,
+       "bracketSpacing": false
+   }
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Review the example code and application structure in `src/` folder
+   - `main.tsx` is the starting point that creates the root component of the React app and binds it to the DOM
+   - `App.tsx` contains the main component of you app
+   - [`<StrictMode>`](https://react.dev/reference/react/StrictMode) lets you find common bugs in your components early during development
+1. Clean up & modify the example code in following files to get a clean starting point
+    - `src/App.tsx`, modify to function component and remove unnecessary code:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+      ```js
+      import './App.css';
+      const App = () => {
+        return (
+          <>
+            <h1>My App</h1>
+          </>
+        );
+      };
+      export default App;
+      ```
+
+    - `src/App.css`: remove unused styles
+    - `src/index.css`: remove unused styles
+1. Create a new project in Github and push your code branches there
+    - `git init`, `git add .`, `git commit -m "Initial commit"`, `git branch -M main`, `git remote add origin ...`, `git push -u origin main`
+
