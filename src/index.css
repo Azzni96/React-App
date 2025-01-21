@@ -1,0 +1,60 @@
+/* Yleiset tyylit */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Pääotsikko */
+h1,
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  color: #555;
+}
+
+/* Taulukko */
+table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+thead {
+  background-color: #f4f4f4;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #4b4b4a; /* Otsikkorivin taustaväri */
+  color: #fff;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Hover-efekti riveille */
+}
+
+/* Kuvien tyylit */
+img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media-rivi */
+td:nth-child(1) {
+  text-align: center;
+}
