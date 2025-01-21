@@ -1,60 +1,135 @@
-/* Yleiset tyylit */
-body {
-  font-family: Arial, sans-serif;
+:root {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* nav */
+nav ul {
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
+  overflow: hidden;
+  background-color: #333333;
+  display: flex;
+  justify-content: flex-end;
 }
 
-/* Pääotsikko */
-h1,
-h2 {
+nav a {
+  display: block;
+  color: white;
   text-align: center;
-  margin: 20px 0;
-  color: #555;
+  padding: 1rem;
+  text-decoration: none;
 }
 
-/* Taulukko */
-table {
-  width: 90%;
-  margin: 0 auto;
-  border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ddd;
+nav a:hover {
+  background-color: #111111;
 }
 
-thead {
-  background-color: #f4f4f4;
-}
-
-th,
+/* media item card */
 td {
-  text-align: left;
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
+  padding: 1rem;
 }
 
-th {
-  background-color: #4b4b4a; /* Otsikkorivin taustaväri */
-  color: #fff;
-  font-weight: bold;
+td img {
+  width: 260px;
+  height: 200px;
+  object-fit: cover;
 }
 
-tr:hover {
-  background-color: #f1f1f1; /* Hover-efekti riveille */
+td button:hover,
+a:hover {
+  background-color: #111111;
 }
 
-/* Kuvien tyylit */
-img {
-  max-width: 100px;
-  height: auto;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+td a {
+  color: white;
+  text-decoration: none;
+  background-color: #363636;
+  color: white;
+  border: none;
+  padding: 0.5rem;
 }
 
-/* Media-rivi */
-td:nth-child(1) {
-  text-align: center;
+/* media item dialog */
+dialog {
+  position: fixed;
+  height: 90%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+dialog img,
+video {
+  height: 70%;
+  object-fit: contain;
+}
+
+/* single view */
+img,
+video {
+  max-width: 100%;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+form input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form textarea {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #363636;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
