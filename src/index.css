@@ -6,7 +6,8 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
+  overscroll-behavior: contain;
+  touch-action: none;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -132,4 +133,30 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+
+}
+.view{
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #363636;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+
+.goback{
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #363636;
+  color: white;
+  border: none;
+  cursor: pointer;
+
 }

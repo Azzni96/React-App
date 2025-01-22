@@ -39,8 +39,8 @@ const mediaArray: MediaItem[] = [
   },
 ];
 
-import MediaRow from './MediaRow';
-import SingleView from './SingleView';
+import MediaRow from '../src/components/MediaRow';
+import SingleView from '../src/components/SingleView';
 import { useState } from 'react';
 const Home = () => {
   const [selectedItem, setSelectedItem] = useState<MediaItem | undefined>(

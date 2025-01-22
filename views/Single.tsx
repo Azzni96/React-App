@@ -1,14 +1,11 @@
+import { NavigateFunction, useLocation, useNavigate } from "react-router";
 import { MediaItem } from "hybrid-types/DBTypes";
-
-const SingleView = (props: {
-  item: MediaItem | undefined;
-  setSelectedItem: (item: MediaItem | undefined) => void;
-}) => {
-  const { item, setSelectedItem } = props;
+const Single = () => {
+  const  navigate: NavigateFunction = useNavigate();
+  const {state} = useLocation();
+  const item: MediaItem = state.item;
   return (
     <>
-      <div className="overlay"></div>
-      <dialog open className="single-view">
         <h2>{item?.title}</h2>
         <p>{item?.description}</p>
         {item?.media_type.startsWith('image') ? (
@@ -19,10 +16,9 @@ const SingleView = (props: {
             Your browser does not support the video tag.
           </video>
         ) : null}
-        <button className="goback" onClick={() => setSelectedItem(undefined)}>Close</button>
-      </dialog>
+        <button className="goback" onClick={() => {navigate(-1)}}>go back</button>
     </>
-  );
-};
+  )
+}
+export  default Single
 
-export default SingleView;
