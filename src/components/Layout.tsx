@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 
+
 const Layout = () => {
   return (
   <>
@@ -14,6 +15,9 @@ const Layout = () => {
         </li>
         <li>
           <Link to="/upload">Upload</Link>
+        </li>
+        <li>
+          <Link to="/Example">Example</Link>
         </li>
       </ul>
     </nav>
