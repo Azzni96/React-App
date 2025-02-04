@@ -1,15 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+
+import { useEffect } from 'react';
+import { useUserContext } from '../src/hooks/ContextHooks';
 
 const Logout = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    // Clear user session or token here
-    localStorage.removeItem('token'); // Ensure this matches the key used in LoginForm
-    // Redirect to login page
-    navigate('/login');
-  };
-
+const {handleLogout} = useUserContext();
+  useEffect(() => {
+    handleLogout();
+  }
+  , []);
   return (
     <button onClick={handleLogout}>Logout</button>
   );
