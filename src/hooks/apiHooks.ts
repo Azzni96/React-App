@@ -71,11 +71,14 @@ const useUser = () => {
     const options = {
       headers: { Authorization: 'Bearer ' + token },
     };
+    try{
     return await fetchData<UserResponse>(
       import.meta.env.VITE_AUTH_API + '/users/token',
       options,
     );
-  };
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }}
 
   const postRegister = async (credentials: RegisterCredentials) => {
     const options = {

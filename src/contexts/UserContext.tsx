@@ -2,8 +2,9 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { UserWithNoPassword } from 'hybrid-types/DBTypes';
 import { useAuthentication, useUser } from '../hooks/apiHooks';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContextType, Credentials } from '../types/LocalTypes';
+import { UserResponse } from 'hybrid-types/MessageTypes';
 
 const UserContext = createContext<AuthContextType | null>(null);
 
@@ -12,14 +13,17 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const { postLogin } = useAuthentication();
     const { getUserByToken } = useUser();
     const navigate = useNavigate();
+    const location = useLocation();
 
     // login, logout and autologin functions are here instead of components
-    const handleLogin = async (inputs: Credentials) => {
+    const handleLogin = async (credentials: Credentials) => {
       try {
-        const loginResult = await postLogin(inputs as Credentials);
+        const loginResult = await postLogin(credentials);
         console.log('doLogin result', loginResult);
         if (loginResult) {
           localStorage.setItem('token', loginResult.token); // Ensure this matches the key used in Logout
+          const userResponse: UserResponse = await getUserByToken(loginResult.token);
+          setUser(userResponse.user);
           navigate('/');
         }
       } catch (error) {
@@ -48,9 +52,14 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
             // TODO: if token exists, get user data from API
             if (token) {
                 const userResponse = await getUserByToken(token);
+
+                if (!userResponse.user) {
+                  throw new Error(userResponse.message);
+                }
                 setUser(userResponse.user);
+                const origin = location.state.form.pathname || '/';
+                navigate(origin);
             }
-            navigate('/');
 
             // TODO: set user to state
             // TODO: navigate to home
