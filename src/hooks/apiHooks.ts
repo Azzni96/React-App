@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { fetchData } from '../utils/functions';
 import { Credentials, RegisterCredentials } from '../types/LocalTypes';
 import { LoginResponse, UserResponse } from 'hybrid-types/MessageTypes';
-import { UploadResponse } from 'hybrid-types/MessageTypes';
+
 
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState<MediaItemWithOwner[]>([]);
@@ -116,7 +116,7 @@ const postFile = async (file: File, token: string) => {
   return data; // The type is UploadResponse
 };
 
-const postMedia = async (file: UploadResponse, inputs: Record<string, string>, token: string) => {
+const postMedia = async ( inputs: Record<string, string>, token: string) => {
   const mediaData = {
     title: inputs.title,
     description: inputs.description,

@@ -7,4 +7,4 @@ Open [your link text here](https://users.metropolia.fi/~nihada/hybrid_react_test
 
 
 jos haluat clone projektin
-git clone https://github.com/Azzni96/React-App/tree/routing
+git clone https://github.com/Azzni96/React-App/tree/forms

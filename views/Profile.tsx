@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../src/hooks/apiHooks";
 import { UserWithNoPassword} from "hybrid-types/DBTypes";
-import { UserResponse } from "hybrid-types/MessageTypes";
+
 
 
 const Profile = () => {
