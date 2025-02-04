@@ -32,15 +32,17 @@ const Layout = () => {
             <li>
               <Link to="/Logout">Logout</Link>
             </li>
+            <li>
+                      <Link to="/Example">Example</Link>
+              </li>
             </>
+
             ): (
               <>
               <li>
               <Link to="/login">Login</Link>
             </li>
-                      <li>
-                      <Link to="/Example">Example</Link>
-                    </li>
+
 
                     <li>
                       <Link to="/register">Register</Link>
