@@ -1,4 +1,4 @@
-import { ErrorResponse } from 'hybrid-types/MessageTypes';
+import {ErrorResponse} from 'hybrid-types/MessageTypes';
 
 const fetchData = async <T>(
   url: string,
@@ -13,9 +13,9 @@ const fetchData = async <T>(
     if (errorJson.message) {
       throw new Error(errorJson.message);
     }
-    throw new Error(`Error ${response.status} occurred`);
+    throw new Error(`Error ${response.status} occured`);
   }
   return json;
 };
 
-export { fetchData };
+export {fetchData};
