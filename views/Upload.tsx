@@ -1,59 +1,72 @@
-import { useState } from 'react';
+import {ChangeEvent, useRef, useState} from 'react';
+import {useForm} from '../src/hooks/formHooks';
+import {useFile, useMedia} from '../src/hooks/apiHooks';
+//import {useNavigate} from 'react-router';
 
 const Upload = () => {
-  const [uploading, setUploading] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [message, setMessage] = useState('');
-  const [inputs, setInputs] = useState({ title: '', description: '' });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
+  const [uploading, setUploading] = useState<boolean>(false);
+  const [uploadResult, setUploadResult] = useState<string>('');
+  const [file, setFile] = useState<File | null>(null)
+  const fileRef = useRef<HTMLInputElement>(null);
+  //const navigate = useNavigate();
+  const {postFile} = useFile();
+  const {postMedia} = useMedia();
+  const initValues = {
+    title: '',
+    description: '',
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setFile(event.target.files[0]);
+  const handleFileChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    if (evt.target.files) {
+      console.log(evt.target.files[0]);
+      setFile(evt.target.files[0]);
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await handleUploadWithoutAxios();
-  };
-
-  const handleUploadWithoutAxios = async () => {
-    if (!file) {
-      setMessage('Please select a file to upload.');
-      return;
-    }
-
+  const doUpload = async () => {
     setUploading(true);
-    const formData = new FormData();
-    formData.append('file', file);
 
+    console.log(inputs);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://media2.edu.metropolia.fi/upload-api/api/v1/upload', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-        body: formData,
-      });
+      if (!file || !token) {
+        return;
+      }
+      // upload the file to fileserver and post metadata to media api server
+      const fileResult = await postFile(file, token);
+      await postMedia(fileResult, inputs, token);
 
-      const data = await response.json();
-      setMessage(data.message);
-    } catch (error) {
-      setMessage('An error occurred during the upload.');
+      // redirect to Home
+      //navigate('/');
+
+      // OR notify user & clear inputs
+      setUploadResult('Media file uploaded!');
+      resetForm();
+    } catch (e) {
+      console.log((e as Error).message);
+      setUploadResult((e as Error).message);
     } finally {
       setUploading(false);
     }
   };
 
+  const {handleSubmit, handleInputChange, inputs, setInputs} = useForm(
+    doUpload,
+    initValues,
+  );
+
+  const resetForm = () => {
+    setInputs(initValues);
+    setFile(null);
+    // use fileRef to clear file input field
+    if (fileRef.current){
+      fileRef.current.value = '';
+    }
+  };
+
   return (
     <>
-      <h2>Upload</h2>
+      <h1>Upload</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title</label>
@@ -62,6 +75,7 @@ const Upload = () => {
             type="text"
             id="title"
             onChange={handleInputChange}
+            value={inputs.title}
           />
         </div>
         <div>
@@ -71,6 +85,7 @@ const Upload = () => {
             rows={5}
             id="description"
             onChange={handleInputChange}
+            value={inputs.description}
           ></textarea>
         </div>
         <div>
@@ -81,25 +96,32 @@ const Upload = () => {
             id="file"
             accept="image/*, video/*"
             onChange={handleFileChange}
+            // refrerence to file input element
+            ref={fileRef}
           />
         </div>
         <img
           src={
             file
               ? URL.createObjectURL(file)
-              : 'https://via.placeholder.com/200?text=Choose+image'
+              : 'https://place-hold.it/200?text=Choose+image'
           }
           alt="preview"
           width="200"
         />
         <button
           type="submit"
-          disabled={uploading || !file || inputs.title.length <= 3}
+          disabled={
+            file && inputs.title.length > 3 && inputs.description.length > 0
+              ? false
+              : true
+          }
         >
-          {uploading ? 'Uploading...' : 'Upload'}
+          {uploading ? 'Uploading..' : 'Upload'}
         </button>
+        <button type="reset" onClick={resetForm} >Reset</button>
+        <p>{uploadResult}</p>
       </form>
-      {message && <p>{message}</p>}
     </>
   );
 };
