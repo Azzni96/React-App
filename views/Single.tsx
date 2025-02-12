@@ -19,7 +19,7 @@ const Single = () => {
       <p>Owner: {item.description}</p>
       <p>Type: {item.media_type}</p>
       <p>Size: {Math.round(item.filesize / 1024)} kB</p>
-      <button
+      <button className=' hover:bg-stone-950'
         onClick={() => {
           navigate(-1);
         }}

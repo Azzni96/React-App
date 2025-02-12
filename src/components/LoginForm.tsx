@@ -27,11 +27,11 @@ const LoginForm = () => {
 
   return (
     <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <h1 className="text-center">Login</h1>
+      <form className='flex flex-col items-center justify-center' onSubmit={handleSubmit}>
+        <div className='flex flex-col w-[80%]'>
           <label htmlFor="loginusername">Username</label>
-          <input
+          <input className='p-[10px] border-[1px] rounded-[5px] '
             name="username"
             type="text"
             id="loginusername"
@@ -40,9 +40,9 @@ const LoginForm = () => {
             // value={inputs.username}
           />
         </div>
-        <div>
+        <div className='flex flex-col w-[80%]'>
           <label htmlFor="loginpassword">Password</label>
-          <input
+          <input className='p-[10px] border-[1px] rounded-[5px] '
             name="password"
             type="password"
             id="loginpassword"
@@ -51,7 +51,7 @@ const LoginForm = () => {
             // value={inputs.password}
           />
         </div>
-        <button type="submit">Login</button>
+        <button className="bg-stone-700 px-4 py-2 text-white hover:bg-stone-600 sm:px-8 sm:py-3" type="submit">Login</button>
       </form>
     </>
   );

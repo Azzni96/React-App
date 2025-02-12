@@ -12,7 +12,7 @@ const SingleView = (props: {
     // - use item prop to render the media item details
     // - use img tag for displaying images
     // - use video tag for displaying videos
-    <dialog open>
+    <dialog open className='h[90%] fixed bg-stone-950 z-[9999] '>
       {item && (
         <>
           <button
@@ -25,9 +25,9 @@ const SingleView = (props: {
           <h3>{item.title}</h3>
           <p>{new Date(item.created_at).toLocaleString('fi-FI')}</p>
           {item.media_type.includes('image') ? (
-            <img src={item.filename} alt={item.title} />
+            <img className=' h-[70%] object-contain w-max' src={item.filename} alt={item.title} />
           ) : (
-            <video src={item.filename} controls />
+            <video className=' h-[70%] object-contain w-max' src={item.filename} controls />
           )}
           <p>{item.description}</p>
         </>

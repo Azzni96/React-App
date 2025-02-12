@@ -15,39 +15,38 @@ const Layout = () => {
   }, []);
   return (
     <>
+      <h2>My APP</h2>
       <div>
         <nav>
-          <ul>
+          <ul className='list-none m-0 p-0  justify-end bg-stone-600 flex'>
             <li>
-              <Link to="/">Home</Link>
+              <Link className='block p-4 text-center hover:bg-stone-800' to="/">Home</Link >
             </li>
             {user ?(
               <>
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link className='block p-4 text-center hover:bg-stone-800' to="/profile">Profile</Link >
             </li>
             <li>
-              <Link to="/upload">Upload</Link>
+              <Link className='block p-4 text-center hover:bg-stone-800' to="/upload">Upload</Link >
             </li>
             <li>
-              <Link to="/Logout">Logout</Link>
+              <Link className='block p-4 text-center hover:bg-stone-800' to="/Logout">Logout</Link >
             </li>
             <li>
-                      <Link to="/Example">Example</Link>
+                      <Link className='block p-4 text-center hover:bg-stone-800' to="/Example">Example</Link >
               </li>
             </>
 
             ): (
               <>
               <li>
-              <Link to="/login">Login</Link>
-            </li>
-
-
-                    <li>
-                      <Link to="/register">Register</Link>
-                    </li>
-                    </>
+              <Link className='block p-4 text-center hover:bg-stone-800' to="/login">Login</Link >
+              </li>
+              <li>
+                <Link className='block p-4 text-center hover:bg-stone-800' to="/register">Register</Link >
+              </li>
+              </>
           )}
 
 

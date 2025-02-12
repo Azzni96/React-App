@@ -66,11 +66,11 @@ const Upload = () => {
 
   return (
     <>
-      <h1>Upload</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className='text-center mb-5 mt-5'>Upload</h1>
+      <form className='flex flex-col items-center bg-stone-500 ' onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Title</label>
-          <input
+          <label className='flex flex-col items-center mb-5' htmlFor="title">Title</label>
+          <input className='border-[1px] rounded-[5px] p-[10px] mb-5'
             name="title"
             type="text"
             id="title"
@@ -78,9 +78,9 @@ const Upload = () => {
             value={inputs.title}
           />
         </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <textarea
+        <div className='text-center mb-5 mt-5'>
+          <label className='flex flex-col items-center mb-5' htmlFor="description">Description</label>
+          <textarea className='border-[1px] rounded-[5px] p-[10px] mb-5'
             name="description"
             rows={5}
             id="description"
@@ -88,9 +88,9 @@ const Upload = () => {
             value={inputs.description}
           ></textarea>
         </div>
-        <div>
-          <label htmlFor="file">File</label>
-          <input
+        <div className='text-center mb-5 mt-5'>
+          <label className='flex flex-col items-center mb-5' htmlFor="file">File</label>
+          <input className='border-[1px] rounded-[5px] p-[10px] mb-5 bg-stone-400'
             name="file"
             type="file"
             id="file"
@@ -100,7 +100,7 @@ const Upload = () => {
             ref={fileRef}
           />
         </div>
-        <img
+        <img className='mb-5'
           src={
             file
               ? URL.createObjectURL(file)
@@ -109,7 +109,7 @@ const Upload = () => {
           alt="preview"
           width="200"
         />
-        <button
+        <button className="block bg-sky-500 p-2 rounded-3xl text-center w-63 transition-all duration-500 mt-10 ease-in-out hover:bg-sky-700"
           type="submit"
           disabled={
             file && inputs.title.length > 3 && inputs.description.length > 0
@@ -119,7 +119,7 @@ const Upload = () => {
         >
           {uploading ? 'Uploading..' : 'Upload'}
         </button>
-        <button type="reset" onClick={resetForm} >Reset</button>
+        <button className="block bg-red-500 p-2 rounded-3xl text-center mt-5 mb-5 w-63 transition-all duration-500 ease-in-out hover:bg-red-700" type="reset" onClick={resetForm} >Reset</button>
         <p>{uploadResult}</p>
       </form>
     </>

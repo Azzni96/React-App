@@ -24,16 +24,16 @@ const Profile = () => {
 
   return (
     <>
-      <h2>Profile</h2>
+      <h2 className=" text-center mt-5 p-0">Profile</h2>
       {user &&(
       <>
-      <p>
+      <p className="text-center mt-3">
         {user.username} ({user.email})
       </p>
-      <p>
+      <p className="text-center mt-3">
         User level : {user.level_name}
         </p>
-      <p>
+      <p className="text-center mt-3">
         Registered:
         {new Date(user.created_at).toLocaleString('fi-FI')}
         </p>

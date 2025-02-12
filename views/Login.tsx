@@ -1,15 +1,22 @@
-
-import LoginForm from '../src/components/LoginForm'
-import RegisterForm from '../src/components/RegisterForm'
-
+import {useState} from 'react';
+import LoginForm from '../src/components/LoginForm';
+import RegisterForm from '../src/components/RegisterForm';
 
 const Login = () => {
+  const [displayRegister, setDisplayRegister] = useState(false);
+
+  const toggleRegister = () => {
+    setDisplayRegister(!displayRegister);
+  };
+
   return (
     <>
-    <LoginForm />
-    <RegisterForm />
+      {displayRegister ? <RegisterForm /> : <LoginForm toggleRegister={toggleRegister} />}
+      <button onClick={toggleRegister}>
+        or {displayRegister ? 'login' : 'register'}?
+      </button>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
