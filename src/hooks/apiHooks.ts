@@ -193,4 +193,70 @@ const useComments = () => {
   // TODO: implement media/comments resource API connections here
 };
 
-export {useMedia, useFile, useAuthentication, useUser, useComments};
+const useLike = () => {
+  const postLike = async (media_id: number, token: string) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({media_id}),
+    };
+    try {
+      return await fetchData<MessageResponse>(
+        import.meta.env.VITE_MEDIA_API + '/like',
+        options,
+      );
+    } catch (error) {
+      throw new Error((error as Error).message);
+    }
+  };
+  const deleteLike = async (like_id: number, token: string) => {
+    // TODO: Send a DELETE request to /likes/:like_id with the token in the Authorization header.
+    const options = {
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
+    try {
+      return await fetchData<MessageResponse>(
+        import.meta.env.VITE_MEDIA_API + '/like' + like_id,
+        options,
+      );
+    } catch (error) {
+      throw new Error((error as Error).message);
+    }
+  };
+
+  const getCountByMediaId = async (media_id: number) => {
+    // TODO: Send a GET request to /likes/count/:media_id to get the number of likes.
+    return await fetchData<MessageResponse>(
+      import.meta.env.VITE_MEDIA_API + '/likes/count/' + media_id,
+    );
+  };
+
+  const getUserLike = async (media_id: number, token: string) => {
+    // TODO: Send a GET request to /likes/bymedia/user/:media_id to get the user's like on the media.
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
+    try {
+      return await fetchData<MessageResponse>(
+        import.meta.env.VITE_MEDIA_API + '/like/bymedia/user/' + media_id,
+        options,
+      );
+    } catch (error) {
+      throw new Error((error as Error).message);
+    }
+
+  };
+
+  return {postLike, deleteLike, getCountByMediaId, getUserLike};
+}
+
+export {useMedia, useFile, useAuthentication, useUser, useComments, useLike};

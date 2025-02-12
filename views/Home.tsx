@@ -3,6 +3,7 @@ import MediaRow from '../src/components/MediaRow';
 import {useState} from 'react';
 import SingleView from '../src/components/SingleView';
 import {useMedia} from '../src/hooks/apiHooks';
+import TryReducerCounter from '../src/components/TryReducerCounter';
 
 const Home = () => {
   const [selectedItem, setSelectedItem] = useState<
@@ -15,6 +16,7 @@ const Home = () => {
 
   return (
     <>
+    <TryReducerCounter />
       {selectedItem && (
         <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       )}
