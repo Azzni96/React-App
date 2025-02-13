@@ -1,11 +1,11 @@
-import {MediaItem} from 'hybrid-types/DBTypes';
+import { MediaItemWithOwner} from 'hybrid-types/DBTypes';
 import {NavigateFunction, useLocation, useNavigate} from 'react-router';
 import Likes from '../src/components/Likes';
 
 const Single = () => {
   const navigate: NavigateFunction = useNavigate();
   const {state} = useLocation();
-  const item: MediaItem = state.item;
+  const item: MediaItemWithOwner = state.item;
   return (
     <>
       <h2>Single</h2>

@@ -1,4 +1,5 @@
 import {
+  Like,
   MediaItem,
   MediaItemWithOwner,
   UserWithNoPassword,
@@ -205,7 +206,7 @@ const useLike = () => {
     };
     try {
       return await fetchData<MessageResponse>(
-        import.meta.env.VITE_MEDIA_API + '/like',
+        import.meta.env.VITE_MEDIA_API + '/likes',
         options,
       );
     } catch (error) {
@@ -222,7 +223,7 @@ const useLike = () => {
     };
     try {
       return await fetchData<MessageResponse>(
-        import.meta.env.VITE_MEDIA_API + '/like' + like_id,
+        import.meta.env.VITE_MEDIA_API + '/likes/' + like_id,
         options,
       );
     } catch (error) {
@@ -232,7 +233,7 @@ const useLike = () => {
 
   const getCountByMediaId = async (media_id: number) => {
     // TODO: Send a GET request to /likes/count/:media_id to get the number of likes.
-    return await fetchData<MessageResponse>(
+    return await fetchData<{count: number}>(
       import.meta.env.VITE_MEDIA_API + '/likes/count/' + media_id,
     );
   };
@@ -246,8 +247,8 @@ const useLike = () => {
       },
     };
     try {
-      return await fetchData<MessageResponse>(
-        import.meta.env.VITE_MEDIA_API + '/like/bymedia/user/' + media_id,
+      return await fetchData<Like>(
+        import.meta.env.VITE_MEDIA_API + '/likes/bymedia/user/' + media_id,
         options,
       );
     } catch (error) {
